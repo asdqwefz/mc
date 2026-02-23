@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="canonical" href="https://kittiemc.com/support">
+  <title>KittieMC • Support</title>
+  <link rel="icon" href="../assets/logo.png" type="image/png">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com/?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#ff69b4",
+            primaryDark: "#e0569b",
+            bg: "#0b1020",
+          },
+          fontFamily: {
+            display: ["Poppins", "system-ui", "sans-serif"],
+          },
+          boxShadow: {
+            cute: "0 18px 40px rgba(255,105,180,0.35)",
+          },
+          borderRadius: {
+            xl2: "1.25rem",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #261b3b 0, #050714 50%, #020308 100%);
+    }
+
+    .pixel-stars {
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 10px 20px, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+        radial-gradient(2px 2px at 130px 80px, rgba(255, 192, 203, 0.9) 50%, transparent 50%),
+        radial-gradient(2px 2px at 230px 40px, rgba(255, 255, 255, 0.9) 50%, transparent 50%),
+        radial-gradient(2px 2px at 330px 120px, rgba(255, 182, 193, 0.9) 50%, transparent 50%);
+      background-size: 200px 200px;
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: -1;
+      animation: starDrift 30s linear infinite alternate;
+    }
+
+    @keyframes starDrift {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(-20px, 15px, 0) scale(1.02);
+      }
+      100% {
+        transform: translate3d(15px, -10px, 0) scale(1.04);
+      }
+    }
+
+    .cta-pulse {
+      position: relative;
+      box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.55);
+      animation: ctaPulse 2.2s ease-out infinite;
+    }
+
+    @keyframes ctaPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(255, 105, 180, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 105, 180, 0);
+      }
+    }
+  </style>
+</head>
+
+<body class="font-display text-white antialiased">
+  <!-- Kar Yağışı Canvas -->
+  <canvas id="snowfall-canvas"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;"
+    width="800" height="600"></canvas>
+  <div class="pixel-stars"></div>
+
+  <div class="relative min-h-screen flex flex-col">
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_top,#ffb7e2_0,#0b1020_40%,#020308_100%)] opacity-90 -z-20">
+    </div>
+    <div
+      class="absolute inset-0 bg-[url('../assets/pixel-clouds.html')] bg-top bg-repeat-x opacity-20 mix-blend-screen pointer-events-none -z-20 animate-[cloudDrift_60s_linear_infinite]">
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-30 border-b border-white/10 bg-black/40 backdrop-blur-xl">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-3">
+            <a href="/#top" class="flex items-center gap-2">
+              <img src="../assets/logo.png" alt="KittieMC icon" class="w-8 h-8 rounded-lg shadow-cute">
+              <div class="flex flex-col leading-tight">
+                <span
+                  class="text-sm font-extrabold bg-gradient-to-r from-pink-300 to-rose-200 bg-clip-text text-transparent">
+                  KittieMC
+                </span>
+                <span class="text-[10px] tracking-[0.2em] text-pink-200/70 uppercase">
+                  Cutest SMP
+                </span>
+              </div>
+            </a>
+            <span
+              class="hidden sm:inline-flex text-[10px] px-3 py-1 rounded-full bg-white/5 border border-white/10 text-pink-100 font-semibold">
+              ❄️ Season 2 • Winter
+            </span>
+          </div>
+
+          <nav class="hidden md:flex items-center gap-6 text-[11px] font-semibold">
+            <a href="/#top" class="text-pink-50/80 hover:text-white transition-colors">Home</a>
+            <a href="/leaderboard" class="text-pink-50/80 hover:text-white transition-colors">Leaderboard</a>
+            <a href="/shop" class="text-pink-50/80 hover:text-white transition-colors">Shop</a>
+            <a href="/gallery" class="text-pink-50/80 hover:text-white transition-colors">Gallery</a>
+            <a href="/#download" class="text-pink-50/80 hover:text-white transition-colors">Download</a>
+            <a href="/support" class="text-white">Support</a>
+          </nav>
+
+          <div class="flex items-center gap-3">
+            <span
+              class="hidden sm:inline-flex items-center gap-1 text-[11px] px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Online: <span class="font-semibold ml-0.5">154</span>
+            </span>
+            <div id="account-menu" class="relative hidden sm:inline-flex">
+              <a id="signup-cta" href="/signup"
+                class="inline-flex items-center text-[11px] px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 via-pink-600 to-rose-600 text-white font-semibold shadow-lg hover:shadow-pink-500/50 transition-all duration-300 border border-pink-400/30 cta-pulse">
+                Sign Up Now!
+              </a>
+              <div id="account-dropdown"
+                class="hidden absolute right-0 top-12 w-56 rounded-xl2 border border-white/10 bg-black/80 backdrop-blur-xl shadow-cute p-2 text-[11px] text-pink-100/80">
+                <a href="/profile" class="block rounded-lg px-3 py-2 hover:bg-white/10 hover:text-white">Profile</a>
+                <a href="/account" class="block rounded-lg px-3 py-2 hover:bg-white/10 hover:text-white">Account</a>
+                <a href="/orders" class="block rounded-lg px-3 py-2 hover:bg-white/10 hover:text-white">My Orders</a>
+                <a href="/support" class="block rounded-lg px-3 py-2 hover:bg-white/10 hover:text-white">Support</a>
+                <button id="logout-btn" class="w-full text-left rounded-lg px-3 py-2 hover:bg-white/10 hover:text-white">Logout</button>
+              </div>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-pink-50" aria-label="Menu">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden pb-3">
+          <nav class="flex flex-col gap-2 text-[11px] font-semibold text-pink-50/90">
+            <a href="/#top" class="py-1">Home</a>
+            <a href="/leaderboard" class="py-1">Leaderboard</a>
+            <a href="/shop" class="py-1">Shop</a>
+            <a href="/gallery" class="py-1">Gallery</a>
+            <a href="/#download" class="py-1">Download</a>
+            <a href="/support" class="py-1">Support</a>
+            <a id="signup-cta-mobile" href="/signup" class="py-1">Sign Up Now!</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <section class="py-14 sm:py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10">
+            <p class="text-[11px] font-semibold tracking-[0.25em] text-pink-200 uppercase">Support</p>
+            <h1 class="mt-2 text-2xl sm:text-3xl font-extrabold text-pink-50">We’re here to help</h1>
+            <p class="mt-2 text-sm text-pink-100/80">Get answers fast or send us a message.</p>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="rounded-2xl border border-white/10 bg-black/50 backdrop-blur-xl p-6 sm:p-8">
+              <h2 class="text-lg font-semibold text-pink-50">Quick Help</h2>
+              <ul class="mt-4 space-y-3 text-[11px] text-pink-100/80">
+                <li>• Server IP: <span class="font-mono text-pink-50">play.kittiemc.com</span></li>
+                <li>• Recommended version: <span class="text-pink-50">Latest Java</span></li>
+                <li>• Need the launcher? Use the Download button on the home page.</li>
+                <li>• Shop issues? Try logging out and back in.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-black/50 backdrop-blur-xl p-6 sm:p-8">
+              <h2 class="text-lg font-semibold text-pink-50">Contact Support</h2>
+              <form class="mt-4 space-y-4">
+                <div>
+                  <label class="text-[11px] font-semibold text-pink-100/80">Username</label>
+                  <input type="text" placeholder="Kittie123"
+                    class="mt-1 w-full rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-pink-100/40 focus:border-pink-400 focus:ring-pink-400">
+                </div>
+                <div>
+                  <label class="text-[11px] font-semibold text-pink-100/80">Email</label>
+                  <input type="email" placeholder="you@kittiemc.com"
+                    class="mt-1 w-full rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-pink-100/40 focus:border-pink-400 focus:ring-pink-400">
+                </div>
+                <div>
+                  <label class="text-[11px] font-semibold text-pink-100/80">Message</label>
+                  <textarea rows="4" placeholder="Tell us what’s wrong..."
+                    class="mt-1 w-full rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-pink-100/40 focus:border-pink-400 focus:ring-pink-400"></textarea>
+                </div>
+                <button type="submit"
+                  class="w-full px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 via-pink-600 to-rose-600 text-white font-bold shadow-lg hover:shadow-pink-500/50 transition-all duration-300 border border-pink-400/30">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-black/70">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid gap-8 sm:grid-cols-3 text-[11px] text-pink-100/80">
+          <div>
+            <p class="text-sm font-semibold text-pink-50">KittieMC</p>
+            <p class="mt-2 text-pink-100/70">The Sweetest Minecraft SMP Server</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-pink-50">Information</p>
+            <div class="mt-2 space-y-1">
+              <a href="/#features" class="block hover:text-white">Features</a>
+              <a href="/shop" class="block hover:text-white">Store</a>
+              <a href="/#download" class="block hover:text-white">Download</a>
+              <a href="/support" class="block hover:text-white">Support</a>
+            </div>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-pink-50">Legal</p>
+            <div class="mt-2 space-y-1">
+              <a href="/legal#tos" class="block hover:text-white">Terms of Service</a>
+              <a href="/legal#privacy" class="block hover:text-white">Privacy Policy</a>
+              <a href="/legal#rules" class="block hover:text-white">Rules</a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 border-t border-white/10 pt-4 text-center text-[11px] text-pink-100/60">
+          © 2025–2026 KittieMC. Not affiliated with Mojang Studios.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
+  </script>
+
+  <script>
+    (function () {
+      const username = localStorage.getItem("kittiemc_username");
+      const loggedIn = localStorage.getItem("kittiemc_logged_in");
+      const desktopCta = document.getElementById("signup-cta");
+      const mobileCta = document.getElementById("signup-cta-mobile");
+      const dropdown = document.getElementById("account-dropdown");
+      const logoutBtn = document.getElementById("logout-btn");
+
+      if (username && loggedIn === "true") {
+        if (desktopCta) {
+          desktopCta.textContent = username;
+          desktopCta.classList.remove("cta-pulse");
+        }
+        if (mobileCta) {
+          mobileCta.textContent = username;
+          mobileCta.href = "#";
+        }
+      }
+
+      desktopCta?.addEventListener("click", (event) => {
+        if (!username || loggedIn !== "true") return;
+        event.preventDefault();
+        dropdown?.classList.toggle("hidden");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!dropdown || dropdown.classList.contains("hidden")) return;
+        const menu = document.getElementById("account-menu");
+        if (menu && !menu.contains(event.target)) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      logoutBtn?.addEventListener("click", () => {
+        localStorage.removeItem("kittiemc_logged_in");
+        window.location.href = "/";
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('snowfall-canvas');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      class Snowflake {
+        constructor() {
+          this.reset();
+        }
+
+        reset() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * -canvas.height;
+          this.radius = Math.random() * 3 + 1;
+          this.speed = Math.random() * 1 + 0.5;
+          this.wind = Math.random() * 0.5 - 0.25;
+          this.opacity = Math.random() * 0.6 + 0.3;
+
+          const colors = [
+            'rgba(255, 255, 255, ',
+            'rgba(255, 105, 180, ',
+            'rgba(255, 182, 193, ',
+            'rgba(255, 192, 203, ',
+            'rgba(255, 240, 245, '
+          ];
+          this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        update() {
+          this.y += this.speed;
+          this.x += this.wind;
+
+          if (this.y > canvas.height) {
+            this.reset();
+          }
+
+          if (this.x > canvas.width || this.x < 0) {
+            this.x = Math.random() * canvas.width;
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.fillStyle = this.color + this.opacity + ')';
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      const flakes = Array.from({ length: 120 }, () => new Snowflake());
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        flakes.forEach((flake) => {
+          flake.update();
+          flake.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>
+
